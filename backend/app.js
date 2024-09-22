@@ -1,5 +1,6 @@
 // Importation des modules nécessaires
 const express = require('express');
+const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
@@ -8,6 +9,17 @@ dotenv.config();
 
 // Création d'une instance de l'application Express
 const app = express();
+
+// Middleware pour configurer les en-têtes CORS afin de permettre les requêtes cross-origin
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*'); // Autorise toutes les origines
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization'); // Autorise les en-têtes spécifiés
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS'); // Autorise les méthodes HTTP spécifiées
+    next(); // Passe au middleware suivant
+});
+
+// Middleware pour parser le corps des requêtes en JSON
+app.use(bodyParser.json());
 
 // Connexion à la base de données MongoDB en utilisant l'URI stockée dans les variables d'environnement
 mongoose.connect(process.env.MONGODB_URI)
