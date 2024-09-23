@@ -18,5 +18,13 @@ const BookSchema = new mongoose.Schema({
   averageRating: { type: Number, default: 0 }   // Note moyenne du livre, par défaut 0
 });
 
+// Middleware pré-enregistrement pour trim les champs de type String
+BookSchema.pre('save', function(next) {
+    this.title = this.title.trim();
+    this.author = this.author.trim();
+    this.genre = this.genre.trim();
+    next();
+});
+
 // Exportation du modèle Book pour l'utiliser dans d'autres fichiers
 module.exports = mongoose.model('Book', BookSchema);
