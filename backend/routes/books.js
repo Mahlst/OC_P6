@@ -1,9 +1,9 @@
 // Importation des modules nécessaires
 const express = require('express');
 const router = express.Router();
-const bookController = require('../controllers/bookController');
+const bookController = require('../controllers/book');
 const { upload, optimizeImage } = require('../middleware/upload');
-const authMiddleware = require('../middleware/authMiddleware');
+const authMiddleware = require('../middleware/auth');
 
 // Route pour créer un livre
 router.post('/', authMiddleware, upload.single('image'), optimizeImage, bookController.createBook); 
