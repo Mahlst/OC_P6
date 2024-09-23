@@ -20,7 +20,7 @@ mongoose.connect(process.env.MONGODB_URI)
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*'); // Autorise toutes les origines
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization'); // Autorise les en-têtes spécifiés
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS'); // Autorise les méthodes HTTP spécifiées
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE'); // Autorise les méthodes HTTP spécifiées
     next(); // Passe au middleware suivant
 });
 

@@ -15,7 +15,7 @@ UserSchema.plugin(uniqueValidator);
 // Middleware pré-enregistrement pour hacher le mot de passe avant de le sauvegarder dans la base de données
 UserSchema.pre('save', async function(next) {
     if (!this.isModified('password')) return next();          // Si le mot de passe n'est pas modifié, passer au middleware suivant
-    const salt = await bcrypt.genSalt(10);                    // Génération d'un sel pour le hachage
+    const salt = await bcrypt.genSalt(16);                    // Génération d'un sel pour le hachage
     this.password = await bcrypt.hash(this.password, salt);   // Hachage du mot de passe avec le sel
     next(); // Passe au middleware suivant
 });

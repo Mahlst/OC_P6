@@ -39,7 +39,7 @@ const optimizeImage = async (req, res, next) => {
     try {
         // Utilisation de sharp pour redimensionner et optimiser l'image
         await sharp(req.file.buffer)
-            .resize(404, 568) // Redimensionnement de l'image
+            .resize(206, 260) // Redimensionnement de l'image
             .toFormat('jpeg') // Conversion au format JPEG
             .jpeg({ quality: 90 }) // Réglage de la qualité de l'image
             .toFile(outputPath); // Enregistrement de l'image optimisée

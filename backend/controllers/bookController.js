@@ -5,8 +5,6 @@ const Book = require('../models/Book');
 
 // Créer un livre
 exports.createBook = async (req, res) => {
-  console.log('Requête reçue:', req.body); // Log des données reçues
-  console.log('Fichier reçu:', req.file); // Log du fichier reçu
 
   // Analyser la chaîne JSON pour extraire les données du livre
   const bookData = JSON.parse(req.body.book);
@@ -102,10 +100,6 @@ exports.updateBook = async (req, res) => {
       // Mettre à jour l'URL de la nouvelle image
       updateData.imageUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
     }
-
-    // Déboguer les données reçues
-    console.log('Données reçues pour mise à jour:', updateData);
-    console.log('Fichier reçu:', req.file);
 
     // Mettre à jour le livre avec les nouvelles données
     const updatedBook = await Book.findByIdAndUpdate(id, updateData, { new: true });
