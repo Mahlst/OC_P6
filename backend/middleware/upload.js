@@ -2,7 +2,6 @@
 const multer = require('multer');
 const sharp = require('sharp');
 const path = require('path');
-const fs = require('fs');
 
 // Définition des types MIME acceptés et leurs extensions correspondantes
 const MIME_TYPES = {
